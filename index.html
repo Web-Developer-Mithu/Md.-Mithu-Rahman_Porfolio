@@ -27,6 +27,8 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <link href="assets/css/cyber-hero.css" rel="stylesheet">
+
   <!-- =======================================================
   * Template Name: Craftivo
   * Template URL: https://bootstrapmade.com/craftivo-bootstrap-portfolio-template/
@@ -74,23 +76,163 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/profile/banner.png" alt="" data-aos="fade-in">
+    <section id="hero" class="hero cyber-hero section dark-background">
+      <canvas id="hero-bg-canvas"></canvas>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
-            <h2>Hi, I'm Md. Mithu Rahman</h2>
-            <p>I'm a <span class="typed" data-typed-items="Web Designer, Web Developer, Fb Ads Expert, "></span><span class="typed-cursor" aria-hidden="true"></span></p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/Digital.Marketer.Mithu" target="_blank"><i class="bi bi-facebook"></i></a>
-              <a href="https://www.linkedin.com/in/digital-marketer-mithu/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <div class="row align-items-center gy-5">
+          
+          <!-- Left Column: Intro & Coding Profile -->
+          <div class="col-lg-7 col-md-12 cyber-intro">
+            <div class="cyber-badge" data-aos="fade-down" data-aos-delay="150">
+              <span class="pulse-dot"></span>
+              <span>Available for Hire &amp; Projects</span>
+            </div>
+
+            <h1 class="cyber-hero-title" data-aos="fade-up" data-aos-delay="200">
+              Hello, I'm <br>
+              <span class="cyber-glow-name">Md. Mithu Rahman</span>
+            </h1>
+
+            <p class="cyber-hero-subtitle" data-aos="fade-up" data-aos-delay="250">
+              Passionate Web Developer &amp; Digital Marketer crafting scalable web apps with 
+              <span class="typed" data-typed-items="Full Stack Development, Laravel &amp; PHP, React &amp; Next.js, Node.js Backend, Tailwind &amp; Bootstrap, "></span>
+            </p>
+
+            <!-- Mini Interactive Terminal Card (All 10 Technologies) -->
+            <div class="cyber-terminal" data-aos="fade-up" data-aos-delay="300">
+              <div class="terminal-header">
+                <span class="term-btn red"></span>
+                <span class="term-btn yellow"></span>
+                <span class="term-btn green"></span>
+                <span class="term-title">mithu@fullstack-dev:~</span>
+              </div>
+              <div class="terminal-body">
+                <code>
+                  <span class="t-kw">const</span> <span class="t-var">developer</span> = {<br>
+                  &nbsp;&nbsp;<span class="t-prop">name</span>: <span class="t-str">'Md. Mithu Rahman'</span>,<br>
+                  &nbsp;&nbsp;<span class="t-prop">frontend</span>: [<span class="t-str">'HTML'</span>, <span class="t-str">'CSS'</span>, <span class="t-str">'JS'</span>, <span class="t-str">'React'</span>, <span class="t-str">'Next.js'</span>, <span class="t-str">'Tailwind'</span>, <span class="t-str">'Bootstrap'</span>],<br>
+                  &nbsp;&nbsp;<span class="t-prop">backend</span>: [<span class="t-str">'PHP'</span>, <span class="t-str">'Laravel'</span>, <span class="t-str">'Node.js'</span>],<br>
+                  &nbsp;&nbsp;<span class="t-prop">mission</span>: <span class="t-str">'High-Performance Clean Code'</span><br>
+                  };
+                </code>
+              </div>
+            </div>
+
+            <!-- Action Buttons & Socials -->
+            <div class="cyber-actions" data-aos="fade-up" data-aos-delay="350">
+              <a href="#portfolio" class="cyber-btn cyber-btn-primary">
+                <i class="bi bi-code-slash"></i> View Projects
+              </a>
+              <a href="#contact" class="cyber-btn cyber-btn-secondary">
+                <i class="bi bi-chat-left-dots"></i> Let's Talk
+              </a>
+            </div>
+
+            <div class="cyber-socials" data-aos="fade-up" data-aos-delay="400">
+              <a href="https://github.com/Web-Developer-Mithu" target="_blank" class="cyber-social-link" title="GitHub">
+                <i class="bi bi-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/digital-marketer-mithu/" target="_blank" class="cyber-social-link" title="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="https://www.facebook.com/Digital.Marketer.Mithu" target="_blank" class="cyber-social-link" title="Facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
             </div>
           </div>
+
+          <!-- Right Column: Generative Code-Sketch & Electric Avatar -->
+          <div class="col-lg-5 col-md-12">
+            <div class="cyber-avatar-wrapper" data-aos="zoom-in" data-aos-delay="300">
+              <div id="cyber-avatar-card" class="cyber-avatar-card">
+                
+                <!-- HUD Corner Accents -->
+                <div class="cyber-corner corner-tl"></div>
+                <div class="cyber-corner corner-tr"></div>
+                <div class="cyber-corner corner-bl"></div>
+                <div class="cyber-corner corner-br"></div>
+
+                <!-- HUD Top Bar -->
+                <div class="cyber-hud-top">
+                  <div class="hud-sys-tag">
+                    <i class="bi bi-cpu-fill"></i>
+                    <span>SKETCH_ENGINE // ONLINE</span>
+                  </div>
+                  <div id="hud-progress-tag" class="hud-progress-tag">INITIALIZING SKETCH...</div>
+                </div>
+
+                <!-- Orbiting Tech Badges -->
+                <div class="floating-tech-badge badge-react">
+                  <i class="bi bi-atom"></i> React
+                </div>
+                <div class="floating-tech-badge badge-next">
+                  <i class="bi bi-triangle-fill"></i> Next.js
+                </div>
+                <div class="floating-tech-badge badge-laravel">
+                  <i class="bi bi-layers-fill"></i> Laravel
+                </div>
+                <div class="floating-tech-badge badge-node">
+                  <i class="bi bi-hexagon-fill"></i> Node.js
+                </div>
+
+                <!-- Avatar & Sketch Canvas Container -->
+                <div id="cyber-image-container" class="cyber-image-container">
+                  <div class="cyber-halo"></div>
+                  
+                  <img id="cyber-portrait-img" class="cyber-portrait-img" src="assets/img/profile/mithu-cutout.webp" alt="Md. Mithu Rahman - Full Stack Developer">
+                  
+                  <!-- Glowing Stylus Pen -->
+                  <div id="cyber-stylus" class="cyber-stylus"></div>
+                  
+                  <!-- Sketch & Lightning Canvas Overlay -->
+                  <canvas id="cyber-canvas-overlay" class="cyber-canvas-overlay"></canvas>
+                </div>
+
+                <!-- HUD Bottom Bar & Replay Control -->
+                <div class="cyber-hud-bottom">
+                  <span>DEV_ID: MR-PRO</span>
+                  <button id="replay-avatar-btn" class="hud-replay-btn" type="button" title="Replay Code Sketch Animation">
+                    <i class="bi bi-arrow-repeat"></i> Replay Sketch
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
+      <!-- Infinite Tech Stack Ribbon (All 10 Technologies) -->
+      <div class="cyber-tech-ribbon" data-aos="fade-up" data-aos-delay="450">
+        <div class="marquee-container">
+          <div class="marquee-track">
+            <!-- Set 1 -->
+            <div class="tech-item tech-html"><i class="bi bi-filetype-html"></i> HTML5</div>
+            <div class="tech-item tech-css"><i class="bi bi-filetype-css"></i> CSS3</div>
+            <div class="tech-item tech-js"><i class="bi bi-filetype-js"></i> JavaScript</div>
+            <div class="tech-item tech-react"><i class="bi bi-atom"></i> React</div>
+            <div class="tech-item tech-next"><i class="bi bi-triangle-fill"></i> Next.js</div>
+            <div class="tech-item tech-node"><i class="bi bi-hexagon-fill"></i> Node.js</div>
+            <div class="tech-item tech-php"><i class="bi bi-filetype-php"></i> PHP</div>
+            <div class="tech-item tech-laravel"><i class="bi bi-layers-fill"></i> Laravel</div>
+            <div class="tech-item tech-tailwind"><i class="bi bi-wind"></i> Tailwind CSS</div>
+            <div class="tech-item tech-bootstrap"><i class="bi bi-bootstrap-fill"></i> Bootstrap</div>
+            <!-- Set 2 (for continuous seamless loop) -->
+            <div class="tech-item tech-html"><i class="bi bi-filetype-html"></i> HTML5</div>
+            <div class="tech-item tech-css"><i class="bi bi-filetype-css"></i> CSS3</div>
+            <div class="tech-item tech-js"><i class="bi bi-filetype-js"></i> JavaScript</div>
+            <div class="tech-item tech-react"><i class="bi bi-atom"></i> React</div>
+            <div class="tech-item tech-next"><i class="bi bi-triangle-fill"></i> Next.js</div>
+            <div class="tech-item tech-node"><i class="bi bi-hexagon-fill"></i> Node.js</div>
+            <div class="tech-item tech-php"><i class="bi bi-filetype-php"></i> PHP</div>
+            <div class="tech-item tech-laravel"><i class="bi bi-layers-fill"></i> Laravel</div>
+            <div class="tech-item tech-tailwind"><i class="bi bi-wind"></i> Tailwind CSS</div>
+            <div class="tech-item tech-bootstrap"><i class="bi bi-bootstrap-fill"></i> Bootstrap</div>
+          </div>
+        </div>
+      </div>
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
@@ -807,6 +949,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/cyber-hero.js"></script>
 
 </body>
 
