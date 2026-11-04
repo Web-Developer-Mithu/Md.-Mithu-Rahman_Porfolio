@@ -65,9 +65,13 @@
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
+    const hidePreloader = () => {
+      preloader.style.opacity = '0';
+      preloader.style.transition = 'opacity 0.25s ease';
+      setTimeout(() => preloader.remove(), 250);
+    };
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 400);
   }
 
   /**
