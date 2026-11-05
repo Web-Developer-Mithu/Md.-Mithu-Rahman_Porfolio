@@ -1,10 +1,10 @@
 /**
- * CYBER DEVELOPER HERO - SCRIPT (RETINA HiDPI & ULTRA-VIBRANT SYNTAX ENGINE)
+ * CYBER DEVELOPER HERO - SCRIPT (MOBILE-OPTIMIZED RETINA ENGINE)
  * Features:
- * 1. 2.5x HiDPI / Retina Supersampling for razor-sharp, crystal-clear 4K resolution
- * 2. High-Chroma, ultra-vibrant IDE syntax coloring (Hot Pink, Cyan, Orange, Matrix Green, Golden Yellow, Purple)
- * 3. Offscreen 1:1 hardware cache canvas for 120 FPS buttery-smooth performance
- * 4. Automatic loop termination on completion (0% idle CPU)
+ * 1. Frame-accumulated progress engine - animation NEVER gets skipped even if mobile thread is slow
+ * 2. Disabled background canvas on mobile (100% GPU dedicated to avatar)
+ * 3. Dynamic container layout auto-sync
+ * 4. 1:1 hardware cached rendering for locked 60 FPS
  * 5. Spotless crystal-clear photo reveal with zero line residue
  */
 
@@ -16,14 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------
-   1. Interactive Cyber Background & Ambient Canvas (HiDPI & Auto-Pause)
+   1. Interactive Cyber Background (Desktop only for max mobile speed)
 -------------------------------------------------------------- */
 function initCyberBackground() {
+  const isMobile = window.innerWidth <= 768;
   const canvas = document.getElementById('hero-bg-canvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d', { alpha: true });
 
-  const isMobile = window.innerWidth <= 768;
+  // On mobile, completely turn off background canvas to ensure maximum FPS for avatar
+  if (isMobile) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  const ctx = canvas.getContext('2d', { alpha: true });
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   let cssWidth = canvas.parentElement.offsetWidth;
@@ -58,7 +64,7 @@ function initCyberBackground() {
     resizeTimeout = setTimeout(resizeBg, 150);
   }, { passive: true });
 
-  const particleCount = isMobile ? 8 : 16;
+  const particleCount = 16;
   const particles = [];
 
   for (let i = 0; i < particleCount; i++) {
@@ -73,7 +79,7 @@ function initCyberBackground() {
   }
 
   const ambientGlyphs = ['</>', '{}', '=>', '0101', 'fn()', 'const', 'php', 'npm', 'async', 'git', 'useState'];
-  const codeParticleCount = isMobile ? 4 : 8;
+  const codeParticleCount = 8;
   const codeParticles = [];
 
   for (let i = 0; i < codeParticleCount; i++) {
@@ -90,17 +96,15 @@ function initCyberBackground() {
   }
 
   let mouse = { x: null, y: null, radius: 100 };
-  if (!isMobile) {
-    window.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    }, { passive: true });
-    window.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-  }
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }, { passive: true });
+  window.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
 
   function renderBg() {
     if (!isVisible || document.hidden) {
@@ -113,7 +117,6 @@ function initCyberBackground() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.restore();
 
-    // Ambient code tokens with sharp rendering
     ctx.font = 'bold 11px "Courier New", monospace';
     for (let c = 0; c < codeParticles.length; c++) {
       const cp = codeParticles[c];
@@ -128,7 +131,6 @@ function initCyberBackground() {
       ctx.fillText(cp.text, cp.x, cp.y);
     }
 
-    // Circuit particles & connecting lines
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       p.x += p.vx;
@@ -137,7 +139,7 @@ function initCyberBackground() {
       if (p.x < 0 || p.x > cssWidth) p.vx *= -1;
       if (p.y < 0 || p.y > cssHeight) p.vy *= -1;
 
-      if (!isMobile && mouse.x !== null && mouse.y !== null) {
+      if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -159,11 +161,11 @@ function initCyberBackground() {
         const dy = p.y - p2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < (isMobile ? 65 : 85)) {
+        if (dist < 85) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          const alpha = 0.12 * (1 - dist / (isMobile ? 65 : 85));
+          const alpha = 0.12 * (1 - dist / 85);
           ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
           ctx.lineWidth = 0.75;
           ctx.stroke();
@@ -199,7 +201,7 @@ function initFloatingCodeParallax() {
 
 /* --------------------------------------------------------------
    3. Digital Code-Brick Architecture Engine & Grand Photo Reveal
-   (Retina HiDPI Supersampling & Ultra-Vibrant IDE Syntax)
+   (Fail-Safe Frame Accumulator & Ultra-Vibrant Syntax Engine)
 -------------------------------------------------------------- */
 function initCodeElementAssembly() {
   const container = document.getElementById('cyber-image-container');
@@ -218,21 +220,20 @@ function initCodeElementAssembly() {
   const ctx = canvas.getContext('2d', { alpha: true });
   const isMobile = window.innerWidth <= 768;
 
-  // HiDPI Supersampling factor (2x to 2.5x native sharpness for zero blurriness)
-  const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  // Sharpness DPR: 1.25 on mobile (lightweight, zero lag), 2.0 on desktop (crisp Retina)
+  const dpr = isMobile ? 1.25 : Math.min(window.devicePixelRatio || 1, 2.0);
 
   let width, height;
 
-  // Offscreen canvas for caching all laid-down bricks with pixel-perfect sharpness
   const cacheCanvas = document.createElement('canvas');
   const cacheCtx = cacheCanvas.getContext('2d', { alpha: true });
   let cachedBrickCount = 0;
 
   function resizeCanvas() {
-    width = container.offsetWidth;
-    height = container.offsetHeight;
+    const rect = container.getBoundingClientRect();
+    width = rect.width || container.offsetWidth || 300;
+    height = rect.height || container.offsetHeight || Math.round(width * (565 / 446));
 
-    // Canvas physical buffer scaled by DPR
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     canvas.style.width = width + 'px';
@@ -313,8 +314,12 @@ function initCodeElementAssembly() {
     { text: '[...]',  color: '#38bdf8', border: 'rgba(56, 189, 248, 0.85)', bg: 'rgba(8, 28, 44, 0.94)' }
   ];
 
-  const animDuration = isMobile ? 2600 : 3400;
-  let startTime = null;
+  // Duration in milliseconds
+  const animDuration = isMobile ? 3000 : 3600;
+
+  // Fail-safe frame accumulator variables (NEVER skipped even if main thread lags)
+  let lastFrameTime = null;
+  let animElapsed = 0;
   let animFrameId = null;
 
   const sparks = [];
@@ -324,7 +329,7 @@ function initCodeElementAssembly() {
 
   const cardObserver = new IntersectionObserver((entries) => {
     isCardVisible = entries[0].isIntersecting;
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05 });
   cardObserver.observe(container);
 
   function drawLightning(x1, y1, x2, y2, displacement, iteration, color, coreColor) {
@@ -370,16 +375,14 @@ function initCodeElementAssembly() {
   }
 
   function startAnimation() {
-    startTime = performance.now();
+    lastFrameTime = performance.now();
+    animElapsed = 0;
     sparks.length = 0;
     shockwave = null;
     hasTriggeredGlint = false;
 
-    // Reset cache canvas
-    cacheCanvas.width = canvas.width;
-    cacheCanvas.height = canvas.height;
-    cacheCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cachedBrickCount = 0;
+    // Reset dimensions in case layout settled
+    resizeCanvas();
 
     // Reset image to 100% hidden (NO photo visible during code-brick construction!)
     img.classList.remove('compiled');
@@ -404,13 +407,26 @@ function initCodeElementAssembly() {
   function loop(currentTime) {
     if (!currentTime) currentTime = performance.now();
 
+    if (!lastFrameTime) lastFrameTime = currentTime;
+    // Frame delta clamped to max 50ms so thread stalls do NOT advance animation in background!
+    const delta = Math.min(Math.max(currentTime - lastFrameTime, 0), 50);
+    lastFrameTime = currentTime;
+
     if (!isCardVisible || document.hidden) {
       animFrameId = requestAnimationFrame(loop);
-      return;
+      return; // Do NOT advance animation while hidden!
     }
 
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / animDuration, 1);
+    // Auto-sync dimensions if container settled during first 400ms
+    if (animElapsed < 400) {
+      const curW = container.offsetWidth;
+      if (curW > 50 && Math.abs(curW - width) > 4) {
+        resizeCanvas();
+      }
+    }
+
+    animElapsed += delta;
+    const progress = Math.min(animElapsed / animDuration, 1);
 
     // Clear physical canvas buffer
     ctx.save();
@@ -439,7 +455,7 @@ function initCodeElementAssembly() {
         seamLine.style.top = `${currentRevealY}px`;
       }
 
-      // INCREMENTAL CACHING: Render newly added bricks ONCE to cacheCanvas with DPR sharpness!
+      // INCREMENTAL CACHING: Render newly added bricks ONCE to cacheCanvas!
       if (builtCount > cachedBrickCount) {
         cacheCtx.textAlign = 'center';
         cacheCtx.textBaseline = 'middle';
@@ -469,7 +485,7 @@ function initCodeElementAssembly() {
         }
       }
 
-      // BLIT all cached bricks in ONE instantaneous 1:1 hardware GPU call (0.01ms)!
+      // BLIT all cached bricks in ONE instantaneous 1:1 hardware GPU call!
       ctx.save();
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.drawImage(cacheCanvas, 0, 0);
@@ -494,7 +510,7 @@ function initCodeElementAssembly() {
         ctx.stroke();
       }
 
-      // Now draw ONLY the active 6-10 newly placed snapping bricks (flashing highlight + neon glow)
+      // Now draw ONLY the active 6-10 newly placed snapping bricks (flashing highlight + glow)
       const recentWindow = isMobile ? 8 : 14;
       const activeStart = Math.max(0, builtCount - recentWindow);
       let latestX = width * 0.5;
@@ -732,8 +748,8 @@ function initCodeElementAssembly() {
         codeLogText.innerHTML = `<span style="color:#00ff88">&gt; [DEPLOYED]: ${totalCells} CODE MODULES COMPILED // MITHU RAHMAN READY</span>`;
       }
 
-      // Stop the animation loop 1.2s after completion to free up 100% of CPU/GPU!
-      if (elapsed > animDuration + 1200 && sparks.length === 0 && (!shockwave || shockwave.opacity <= 0)) {
+      // Stop the animation loop 1.5s after completion to free up 100% of CPU/GPU!
+      if (animElapsed > animDuration + 1500 && sparks.length === 0 && (!shockwave || shockwave.opacity <= 0)) {
         ctx.save();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -785,7 +801,13 @@ function initCodeElementAssembly() {
     animFrameId = requestAnimationFrame(loop);
   }
 
-  setTimeout(startAnimation, 150);
+  // Start immediately and also verify on window load
+  setTimeout(startAnimation, 100);
+  window.addEventListener('load', () => {
+    if (animElapsed === 0) {
+      startAnimation();
+    }
+  });
 
   if (replayBtn) {
     replayBtn.addEventListener('click', (e) => {
