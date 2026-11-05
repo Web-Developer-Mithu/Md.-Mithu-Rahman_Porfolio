@@ -1,6 +1,6 @@
 /**
- * CYBER DEVELOPER HERO - SCRIPT (OPTIMIZED FOR PERFORMANCE & MOBILE)
- * 99%+ Accurate Real Code-Sketch Drawing, Sunglass Glint, Laser Energy Sweep & Electric Climax
+ * CYBER DEVELOPER HERO - SCRIPT (CODE COMPILATION SHOWCASE)
+ * Real-time Compiler Engine, Code Typography Contours, Binary Shading & Progressive Art Reveal
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -120,16 +120,18 @@ function initCyberBackground() {
 }
 
 /* --------------------------------------------------------------
-   2. 99%+ Real Code-Sketch Drawing & High-Performance Climax
+   2. 99%+ Real Code Compilation & Progressive Art Reveal
 -------------------------------------------------------------- */
 function initRealCodeSketchAnimation() {
   const container = document.getElementById('cyber-image-container');
   const canvas = document.getElementById('cyber-canvas-overlay');
   const img = document.getElementById('cyber-portrait-img');
   const stylus = document.getElementById('cyber-stylus');
-  const sweepLine = document.getElementById('energy-sweep-line');
+  const seamLine = document.getElementById('energy-sweep-line');
+  const beamTag = document.getElementById('code-beam-tag');
   const sunglassGlint = document.getElementById('sunglass-glint');
   const statusTag = document.getElementById('hud-progress-tag');
+  const codeLogText = document.getElementById('hud-code-text');
   const replayBtn = document.getElementById('replay-avatar-btn');
 
   if (!container || !canvas || !img) return;
@@ -150,17 +152,38 @@ function initRealCodeSketchAnimation() {
     resizeTimer = setTimeout(resizeCanvas, 150);
   }, { passive: true });
 
-  // Raw sketch contours from window.MITHU_SKETCH_DATA
+  // Raw sketch contours (Strictly sorted from top to bottom)
   const sketchData = window.MITHU_SKETCH_DATA || { width: 446, height: 565, strokes: [], shading: [] };
   const rawW = sketchData.width || 446;
   const rawH = sketchData.height || 565;
   const totalStrokes = sketchData.strokes.length;
   const totalShading = sketchData.shading.length;
 
-  const codeGlyphs = ['0', '1', '{', '}', '<', '>', '/', ';', '=', '*', '#', '$', 'const', 'dev', 'fn'];
+  // Real programming code syntax strings rendered along the contours & body
+  const codeStrings = [
+    'const mithu = new Developer();',
+    'function compileAvatar() {',
+    '  renderSunglasses({ uv: 400 });',
+    '  buildKurtaCollar({ gold: true });',
+    '  mountWatch({ live: true });',
+    '  return <FullStackDev />;',
+    '}',
+    '<div class="mithu-core" />',
+    'import { Laravel, React } from "mithu";',
+    '$dev->setRole("Full Stack Pro");',
+    'async function generateFace() => {',
+    'const status = "ONLINE_2026";',
+    '01011001 01100101 01110011'
+  ];
+
+  const codeTokens = ['const', 'let', 'div', '{}', '()', '=>', 'fn', 'php', 'react', '0101', 'class', 'import', 'return', 'await'];
+
+  // Matrix drops in the unrevealed zone
+  const matrixCols = isMobile ? 14 : 22;
+  const matrixDrops = Array.from({ length: matrixCols }, () => Math.random() * -20);
 
   // Animation timeline configuration
-  const animDuration = isMobile ? 4200 : 4800; // Snappier on mobile
+  const animDuration = isMobile ? 4400 : 5000;
   let startTime = null;
   let animFrameId = null;
 
@@ -169,7 +192,6 @@ function initRealCodeSketchAnimation() {
   const floatingDust = [];
   const activeCodeLabels = [];
   let shockwave = null;
-  let hasTriggeredSweep = false;
   let hasTriggeredGlint = false;
   let isCardVisible = true;
 
@@ -186,8 +208,6 @@ function initRealCodeSketchAnimation() {
       ctx.lineTo(x2, y2);
       ctx.strokeStyle = color;
       ctx.lineWidth = 2.4;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 8;
       ctx.stroke();
 
       ctx.beginPath();
@@ -195,7 +215,6 @@ function initRealCodeSketchAnimation() {
       ctx.lineTo(x2, y2);
       ctx.strokeStyle = coreColor || '#ffffff';
       ctx.lineWidth = 1;
-      ctx.shadowBlur = 0;
       ctx.stroke();
       return;
     }
@@ -211,7 +230,7 @@ function initRealCodeSketchAnimation() {
     const finalCount = isMobile ? Math.ceil(count * 0.6) : count;
     for (let i = 0; i < finalCount; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 3.8 + 1.2;
+      const speed = Math.random() * 4 + 1.2;
       sparks.push({
         x: x,
         y: y,
@@ -219,7 +238,7 @@ function initRealCodeSketchAnimation() {
         vy: Math.sin(angle) * speed,
         life: 1,
         decay: Math.random() * 0.05 + 0.03,
-        color: Math.random() > 0.3 ? '#00f0ff' : '#ffffff'
+        color: Math.random() > 0.3 ? '#00f0ff' : '#00ff88'
       });
     }
   }
@@ -234,7 +253,7 @@ function initRealCodeSketchAnimation() {
       size: Math.random() * 1.6 + 0.8,
       opacity: 0.85,
       decay: 0.009,
-      color: Math.random() > 0.4 ? '#00f0ff' : '#ffffff'
+      color: Math.random() > 0.4 ? '#00f0ff' : '#00ff88'
     });
   }
 
@@ -244,15 +263,15 @@ function initRealCodeSketchAnimation() {
     floatingDust.length = 0;
     activeCodeLabels.length = 0;
     shockwave = null;
-    hasTriggeredSweep = false;
     hasTriggeredGlint = false;
 
+    // Reset image to 100% hidden at bottom
     img.classList.remove('compiled');
-    img.style.filter = 'grayscale(100%) brightness(0.08) contrast(200%)';
-    img.style.opacity = '0.08';
+    img.style.clipPath = 'inset(0 0 100% 0)';
+    img.style.opacity = '1';
 
     if (stylus) stylus.classList.add('active');
-    if (sweepLine) sweepLine.classList.remove('active');
+    if (seamLine) seamLine.classList.add('active');
     if (sunglassGlint) sunglassGlint.classList.remove('shine');
 
     if (animFrameId) cancelAnimationFrame(animFrameId);
@@ -262,7 +281,6 @@ function initRealCodeSketchAnimation() {
   function loop(currentTime) {
     if (!currentTime) currentTime = performance.now();
 
-    // Pause rendering when tab or card is not visible to save 100% GPU
     if (!isCardVisible || document.hidden) {
       animFrameId = requestAnimationFrame(loop);
       return;
@@ -276,27 +294,12 @@ function initRealCodeSketchAnimation() {
     const scaleX = width / rawW;
     const scaleY = height / rawH;
 
-    // HUD Status Updates
-    if (statusTag) {
-      if (progress < 0.45) {
-        statusTag.textContent = `PHASE 1: CONTOURS [${Math.floor(progress * 222)}%]`;
-        statusTag.style.color = '#00f0ff';
-      } else if (progress < 0.75) {
-        statusTag.textContent = `PHASE 2: SHADING [${Math.floor((progress - 0.45) * 333)}%]`;
-        statusTag.style.color = '#ffbd2e';
-      } else if (progress < 0.95) {
-        statusTag.textContent = `PHASE 3: LASER SWEEP [${Math.floor((progress - 0.75) * 500)}%]`;
-        statusTag.style.color = '#00ff88';
-      } else {
-        statusTag.innerHTML = `<span style="color:#00ff88">✔ ONLINE // 99.8% VERIFIED</span>`;
-      }
-    }
-
-    // 1. Draw Real Contours
-    const strokeLimit = Math.min(Math.floor((progress / 0.75) * totalStrokes), totalStrokes);
+    // Active Drawing Phase: 0 -> 0.82
+    const strokeLimit = Math.min(Math.floor((progress / 0.82) * totalStrokes), totalStrokes);
     let lastPenX = width * 0.5;
-    let lastPenY = height * 0.25;
+    let lastPenY = 0;
 
+    // 1. Draw Real Contours from Top to Bottom
     ctx.lineWidth = 1.25;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
@@ -321,92 +324,145 @@ function initRealCodeSketchAnimation() {
         }
       }
 
-      const strokeAlpha = progress < 0.85 ? 0.9 : Math.max(0.18, 1 - (progress - 0.85) * 3.5);
+      const strokeAlpha = progress < 0.85 ? 0.85 : 0.2;
       ctx.strokeStyle = `rgba(0, 240, 255, ${strokeAlpha})`;
       ctx.stroke();
     }
 
-    // 2. Code Typography along Contours
-    if (progress < 0.85 && Math.random() < (isMobile ? 0.25 : 0.4) && strokeLimit > 10) {
-      const randomStroke = sketchData.strokes[Math.floor(Math.random() * strokeLimit)];
-      if (randomStroke && randomStroke.length > 2) {
-        const randPt = randomStroke[Math.floor(Math.random() * randomStroke.length)];
-        activeCodeLabels.push({
-          x: randPt[0] * scaleX,
-          y: randPt[1] * scaleY,
-          text: codeGlyphs[Math.floor(Math.random() * codeGlyphs.length)],
-          opacity: 1,
-          decay: 0.04
-        });
-      }
-    }
-
-    // 3. Render Code Shading (Sunglasses & Hair)
-    if (progress > 0.35 && totalShading > 0) {
-      const shadeLimit = Math.min(Math.floor(((progress - 0.35) / 0.45) * totalShading), totalShading);
-      ctx.font = '8px "Courier New", monospace';
-      ctx.fillStyle = `rgba(0, 240, 255, ${progress < 0.85 ? 0.75 : 0.15})`;
+    // 2. Render Code Shading on Sunglasses and Hair (Real binary & code blocks!)
+    if (totalShading > 0) {
+      const shadeLimit = Math.min(Math.floor((progress / 0.82) * totalShading), totalShading);
+      ctx.font = 'bold 8.5px "Courier New", monospace';
+      ctx.fillStyle = progress < 0.85 ? '#00f0ff' : 'rgba(0, 240, 255, 0.2)';
 
       for (let k = 0; k < shadeLimit; k++) {
         const sp = sketchData.shading[k];
         const sx = sp[0] * scaleX;
         const sy = sp[1] * scaleY;
-        ctx.fillText((k % 2 === 0) ? '1' : '0', sx - 2, sy + 3);
 
-        if (progress > 0.5 && progress < 0.75 && k === shadeLimit - 1) {
-          lastPenX = sx;
-          lastPenY = sy;
-        }
+        // Render code tokens directly inside sunglasses and hair!
+        const codeChar = (k % 4 === 0) ? '{1}' : (k % 4 === 1) ? '<0>' : (k % 4 === 2) ? 'PHP' : 'DEV';
+        ctx.fillText(codeChar, sx - 4, sy + 3);
       }
     }
 
-    // 4. Stylus Pen & Drawing Climax
-    if (progress < 0.80) {
+    // 3. Progressive Reveal Synchronized to Pen Y Position
+    if (progress < 0.82) {
+      const currentRevealY = Math.max(0, Math.min(height, lastPenY + 6));
+      const bottomCutoff = Math.max(0, 100 - (currentRevealY / height) * 100);
+      const ratio = currentRevealY / height;
+
+      // Clip image so ONLY the code-drawn portion is visible!
+      img.style.clipPath = `inset(0 0 ${bottomCutoff.toFixed(1)}% 0)`;
+
+      // Stylus positioning
       if (stylus) {
         stylus.style.left = `${lastPenX}px`;
         stylus.style.top = `${lastPenY}px`;
       }
 
-      addSparks(lastPenX, lastPenY, 2);
+      // Drawing seam positioning
+      if (seamLine) {
+        seamLine.style.top = `${currentRevealY}px`;
+      }
 
-      // Electric arc from stylus tip
-      if (Math.random() < (isMobile ? 0.2 : 0.32)) {
-        const targetStroke = sketchData.strokes[Math.floor(Math.random() * strokeLimit)];
-        if (targetStroke && targetStroke.length > 0) {
-          const tPt = targetStroke[0];
-          drawLightning(lastPenX, lastPenY, tPt[0] * scaleX, tPt[1] * scaleY, 22, 3, '#00f0ff', '#ffffff');
+      // Live Compiler Log & Floating Code Tag updates
+      if (codeLogText && beamTag) {
+        if (ratio < 0.20) {
+          codeLogText.textContent = `> [COMPILING]: renderHair({ style: 'slick', color: 'dark' });`;
+          beamTag.textContent = `<hair: compiling />`;
+        } else if (ratio < 0.35) {
+          codeLogText.textContent = `> [COMPILING]: mountSunglasses({ polarize: true, uv: 400 });`;
+          beamTag.textContent = `<sunglasses: wayfarer />`;
+        } else if (ratio < 0.50) {
+          codeLogText.textContent = `> [COMPILING]: constructFaceMesh({ eyes: 'focused', beard: 'sharp' });`;
+          beamTag.textContent = `<face: contours />`;
+        } else if (ratio < 0.70) {
+          codeLogText.textContent = `> [COMPILING]: buildKurtaCollar({ embroidery: 'gold', buttons: 3 });`;
+          beamTag.textContent = `<collar: embroidery />`;
+        } else if (ratio < 0.85) {
+          codeLogText.textContent = `> [COMPILING]: renderHandsAndWatch({ wrist: 'metallic_watch' });`;
+          beamTag.textContent = `<hands: watch />`;
+        } else {
+          codeLogText.textContent = `> [COMPILING]: linkFullStack({ Laravel, React, Node, PHP });`;
+          beamTag.textContent = `<stack: fullstack />`;
         }
       }
 
-      const photoProgress = Math.max(0, (progress - 0.2) / 0.6);
-      img.style.filter = `grayscale(${Math.max(0, 100 - photoProgress * 100)}%) brightness(${0.1 + photoProgress * 0.95}) contrast(${200 - photoProgress * 90}%)`;
-      img.style.opacity = `${0.1 + photoProgress * 0.9}`;
-
-    } else {
-      // Climax Events
-      if (!hasTriggeredSweep && sweepLine) {
-        hasTriggeredSweep = true;
-        sweepLine.classList.add('active');
-        addSparks(width * 0.5, height * 0.3, 10);
+      // HUD Percentage
+      if (statusTag) {
+        const renderPct = Math.min(100, Math.floor((progress / 0.82) * 100));
+        statusTag.textContent = `CODE COMPILING [${renderPct}%]`;
+        statusTag.style.color = '#00f0ff';
       }
 
-      if (progress >= 0.82 && !hasTriggeredGlint && sunglassGlint) {
+      // 4. Matrix Code Waterfall in the Unrevealed Zone (Below the seam!)
+      ctx.font = 'bold 9px "Courier New", monospace';
+      ctx.fillStyle = 'rgba(0, 255, 136, 0.45)';
+      const colStep = width / matrixCols;
+
+      for (let m = 0; m < matrixCols; m++) {
+        const charX = m * colStep;
+        matrixDrops[m] += 3;
+        const charY = currentRevealY + (matrixDrops[m] % Math.max(30, height - currentRevealY));
+
+        if (charY > currentRevealY && charY < height) {
+          const char = Math.random() > 0.5 ? '1' : '0';
+          ctx.fillText(char, charX, charY);
+        }
+      }
+
+      // 5. Code Stream Strings floating off the active seam
+      if (Math.random() < 0.4) {
+        activeCodeLabels.push({
+          x: Math.max(10, Math.min(width - 70, lastPenX + (Math.random() - 0.5) * 60)),
+          y: currentRevealY + (Math.random() - 0.5) * 12,
+          text: codeTokens[Math.floor(Math.random() * codeTokens.length)],
+          opacity: 1,
+          decay: 0.035
+        });
+      }
+
+      // Sparks & Lightning
+      addSparks(lastPenX, lastPenY, 3);
+
+      if (Math.random() < (isMobile ? 0.25 : 0.38)) {
+        const seamX1 = Math.max(0, lastPenX - 60);
+        const seamX2 = Math.min(width, lastPenX + 60);
+        drawLightning(seamX1, currentRevealY, seamX2, currentRevealY, 12, 3, '#00f0ff', '#ffffff');
+      }
+
+      // Sunglasses Glint trigger
+      if (currentRevealY > height * 0.28 && !hasTriggeredGlint && sunglassGlint) {
         hasTriggeredGlint = true;
         sunglassGlint.classList.add('shine');
-        addSparks(width * 0.52, height * 0.26, 12);
-        drawLightning(width * 0.35, height * 0.26, width * 0.68, height * 0.26, 10, 3, '#00f0ff', '#ffffff');
+        addSparks(width * 0.52, currentRevealY, 14);
+      }
+
+    } else {
+      // Completed Art
+      img.style.clipPath = 'inset(0 0 0% 0)';
+
+      if (!img.classList.contains('compiled')) {
+        img.classList.add('compiled');
+        shockwave = { radius: 10, maxRadius: width * 0.85, opacity: 1 };
+        addSparks(width / 2, height / 2, 25);
       }
 
       if (stylus && stylus.classList.contains('active')) {
         stylus.classList.remove('active');
-        shockwave = { radius: 10, maxRadius: width * 0.8, opacity: 1 };
-        addSparks(width / 2, height / 2, 22);
       }
 
-      if (!img.classList.contains('compiled')) {
-        img.classList.add('compiled');
-        img.style.filter = '';
-        img.style.opacity = '';
+      if (seamLine && seamLine.classList.contains('active')) {
+        seamLine.classList.remove('active');
+      }
+
+      if (statusTag) {
+        statusTag.innerHTML = `<span style="color:#00ff88">✔ SYS.ONLINE // 99.8% VERIFIED</span>`;
+      }
+
+      if (codeLogText) {
+        codeLogText.innerHTML = `<span style="color:#00ff88">&gt; [SUCCESS]: 100% COMPILED // MITHU RAHMAN READY</span>`;
       }
 
       if (Math.random() < 0.2) {
@@ -425,7 +481,7 @@ function initRealCodeSketchAnimation() {
       }
     }
 
-    // 5. Floating Ambient Dust Particles
+    // 6. Render Floating Dust Particles
     for (let d = floatingDust.length - 1; d >= 0; d--) {
       const dust = floatingDust[d];
       dust.x += dust.vx;
@@ -445,8 +501,8 @@ function initRealCodeSketchAnimation() {
       ctx.globalAlpha = 1;
     }
 
-    // 6. Render Code Labels on Strokes
-    ctx.font = '10px "Courier New", monospace';
+    // 7. Render Floating Code Tokens along the Seam
+    ctx.font = 'bold 9.5px "Courier New", monospace';
     for (let l = activeCodeLabels.length - 1; l >= 0; l--) {
       const lbl = activeCodeLabels[l];
       lbl.opacity -= lbl.decay;
@@ -459,7 +515,7 @@ function initRealCodeSketchAnimation() {
       ctx.fillText(lbl.text, lbl.x, lbl.y);
     }
 
-    // 7. Render & update Sparks
+    // 8. Render & update Sparks
     for (let s = sparks.length - 1; s >= 0; s--) {
       const sp = sparks[s];
       sp.x += sp.vx;
@@ -477,7 +533,7 @@ function initRealCodeSketchAnimation() {
       ctx.fill();
     }
 
-    // 8. Shockwave on completion
+    // 9. Shockwave on completion
     if (shockwave && shockwave.opacity > 0) {
       shockwave.radius += (shockwave.maxRadius - shockwave.radius) * 0.16;
       shockwave.opacity -= 0.04;
@@ -507,7 +563,7 @@ function initRealCodeSketchAnimation() {
    3. Interactive 3D Parallax Tilt Effect on Avatar Card (Desktop Only)
 -------------------------------------------------------------- */
 function initCyber3DTilt() {
-  if (window.innerWidth <= 768) return; // Disable tilt on touch devices for performance & natural scrolling
+  if (window.innerWidth <= 768) return;
   const card = document.getElementById('cyber-avatar-card');
   if (!card) return;
 

@@ -1,5 +1,5 @@
 /* ==============================================================
-   CYBER DEVELOPER HERO SECTION - STYLES (FAST & MOBILE RESPONSIVE)
+   CYBER DEVELOPER HERO SECTION - STYLES (CODE COMPILATION SHOWCASE)
    Custom Futuristic Programmer, Generative Code-Sketch & Electric Effects
    ============================================================== */
 
@@ -266,7 +266,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------
-   Right Column: Generative Code-Sketch & Electric Avatar Card
+   Right Column: Generative Code-Sketch & Avatar Card
 -------------------------------------------------------------- */
 .cyber-avatar-wrapper {
   position: relative;
@@ -282,7 +282,7 @@ html, body {
   width: 100%;
   max-width: 410px;
   border-radius: 16px;
-  background: rgba(6, 12, 22, 0.88);
+  background: rgba(6, 12, 22, 0.9);
   border: 1px solid rgba(0, 240, 255, 0.25);
   box-shadow: 
     0 15px 40px rgba(0, 0, 0, 0.7),
@@ -299,8 +299,8 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 7px;
-  margin-bottom: 8px;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
   border-bottom: 1px dashed rgba(0, 240, 255, 0.25);
   font-family: 'Courier New', Courier, monospace;
   font-size: clamp(0.68rem, 2vw, 0.74rem);
@@ -320,6 +320,36 @@ html, body {
 .hud-progress-tag {
   color: #ffbd2e;
   font-weight: bold;
+}
+
+/* Live Compiler Stream Log Bar */
+.hud-code-log {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(0.64rem, 1.8vw, 0.71rem);
+  color: #00ff88;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-code-log i {
+  color: #00f0ff;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+#hud-code-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Futuristic Corner Brackets */
@@ -374,7 +404,7 @@ html, body {
   100% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.95; }
 }
 
-/* The Portrait Cutout Image */
+/* The Portrait Cutout Image - Top-to-Bottom Progressive Clip */
 .cyber-portrait-img {
   position: relative !important;
   inset: auto !important;
@@ -384,17 +414,17 @@ html, body {
   object-fit: contain !important;
   display: block !important;
   z-index: 5 !important;
-  filter: grayscale(100%) brightness(0.08) contrast(200%);
-  opacity: 0.08;
-  transition: filter 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.4s ease;
-  transform: scale(0.98);
-  will-change: filter, opacity;
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transform: scale(1);
+  filter: grayscale(0%) brightness(1.05) contrast(1.1);
+  will-change: clip-path, opacity;
 }
 
-/* When image is fully developed (Magical Aura Pulse) */
+/* When image is fully developed */
 .cyber-portrait-img.compiled {
-  opacity: 1;
-  transform: scale(1);
+  clip-path: inset(0 0 0% 0) !important;
+  opacity: 1 !important;
   filter: grayscale(0%) brightness(1.06) contrast(1.12)
           drop-shadow(0 0 15px rgba(0, 240, 255, 0.5))
           drop-shadow(0 0 30px rgba(112, 0, 255, 0.3));
@@ -412,6 +442,45 @@ html, body {
             drop-shadow(0 0 20px rgba(0, 240, 255, 0.65))
             drop-shadow(0 0 40px rgba(112, 0, 255, 0.4));
   }
+}
+
+/* Real-time Drawing Seam Laser Line */
+.energy-sweep-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00f0ff 20%, #ffffff 50%, #00f0ff 80%, transparent);
+  box-shadow: 0 0 15px 3px #00f0ff, 0 0 30px 6px rgba(0, 240, 255, 0.85);
+  top: 0;
+  z-index: 13;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  will-change: top, opacity;
+}
+
+.energy-sweep-line.active {
+  opacity: 1;
+}
+
+/* Floating Code Badge on Laser Seam */
+.code-beam-tag {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  background: rgba(6, 12, 22, 0.9);
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 2px 7px;
+  border-radius: 3px;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 /* Sunglass Glint / Lens Flare Effect */
@@ -459,32 +528,6 @@ html, body {
   15% { opacity: 1; }
   85% { opacity: 1; }
   100% { left: 160%; opacity: 0; }
-}
-
-/* Energy Sweep Laser Scan */
-.energy-sweep-line {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #00f0ff 20%, #ffffff 50%, #00f0ff 80%, transparent);
-  box-shadow: 0 0 15px 3px #00f0ff, 0 0 30px 6px rgba(0, 240, 255, 0.8);
-  top: 0;
-  z-index: 13;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.energy-sweep-line.active {
-  opacity: 1;
-  animation: energySweep 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-}
-
-@keyframes energySweep {
-  0% { top: 0%; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
 }
 
 /* Electric Sparks & Code Sketch Canvas Overlay */
@@ -723,7 +766,6 @@ html, body {
     margin: 0 auto;
   }
 
-  /* Keep badges strictly inside bounds on mobile to prevent overflow */
   .badge-react { top: 6%; left: 8px; }
   .badge-next { top: 6%; right: 8px; }
   .badge-laravel { bottom: 8%; right: 8px; }
