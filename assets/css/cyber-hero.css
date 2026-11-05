@@ -324,12 +324,12 @@ html, body {
 
 /* Live Compiler Stream Log Bar */
 .hud-code-log {
-  background: rgba(0, 240, 255, 0.05);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(0.64rem, 1.8vw, 0.71rem);
+  background: rgba(10, 16, 28, 0.88);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: clamp(0.65rem, 1.8vw, 0.73rem);
   color: #00ff88;
   white-space: nowrap;
   overflow: hidden;
@@ -338,6 +338,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
+  box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.05);
 }
 
 .hud-code-log i {
@@ -414,16 +415,15 @@ html, body {
   object-fit: contain !important;
   display: block !important;
   z-index: 5 !important;
-  clip-path: inset(0 0 100% 0);
   opacity: 0;
   transform: scale(1);
   filter: grayscale(0%) brightness(1.05) contrast(1.1);
-  will-change: clip-path, opacity;
+  transition: opacity 0.35s ease-out;
+  will-change: opacity;
 }
 
 /* When image is fully developed */
 .cyber-portrait-img.compiled {
-  clip-path: inset(0 0 0% 0) !important;
   opacity: 1 !important;
   filter: grayscale(0%) brightness(1.06) contrast(1.12)
           drop-shadow(0 0 15px rgba(0, 240, 255, 0.5))
@@ -736,14 +736,19 @@ html, body {
 -------------------------------------------------------------- */
 @media (max-width: 991px) {
   #hero.cyber-hero {
-    padding-top: 90px;
-    padding-bottom: 35px;
+    padding-top: 85px;
+    padding-bottom: 30px;
     text-align: center;
+  }
+
+  .cyber-avatar-card {
+    max-width: 320px;
+    margin: 0 auto 24px auto;
   }
 
   .cyber-intro {
     padding-right: 0;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
   }
 
   .cyber-actions {
@@ -832,5 +837,151 @@ html, body {
 @media (max-width: 360px) {
   .cyber-avatar-card {
     max-width: 260px;
+  }
+}
+
+
+/* --------------------------------------------------------------
+   Ambient Floating Code Capsules Layer
+-------------------------------------------------------------- */
+.cyber-floating-code-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.floating-code-card {
+  position: absolute;
+  padding: 8px 14px;
+  background: rgba(10, 18, 32, 0.48);
+  border: 1px solid rgba(0, 240, 255, 0.16);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 0 12px rgba(0, 240, 255, 0.04);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.2px;
+  color: #a4b3c6;
+  white-space: nowrap;
+  user-select: none;
+  opacity: 0.72;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+.floating-code-card code {
+  color: inherit;
+  background: transparent;
+  padding: 0;
+}
+
+.c-kw { color: #ff007b; font-weight: bold; }
+.c-fn { color: #00f0ff; }
+.c-cls { color: #f5b041; }
+.c-str { color: #00ff88; }
+.c-var { color: #9bc5ff; }
+.c-tag { color: #00f0ff; }
+.c-attr { color: #f5b041; }
+.c-num { color: #bd93f9; }
+.c-comment { color: #6272a4; font-style: italic; }
+
+/* Specific Positions & Smooth Floating Drift */
+.code-chip-1 {
+  top: 15%;
+  left: 2.5%;
+  animation: floatCode1 8s ease-in-out infinite;
+}
+
+.code-chip-2 {
+  top: 13%;
+  right: 3.5%;
+  animation: floatCode2 9.5s ease-in-out infinite 1s;
+}
+
+.code-chip-3 {
+  top: 50%;
+  left: 1%;
+  animation: floatCode3 8.5s ease-in-out infinite 0.5s;
+}
+
+.code-chip-4 {
+  bottom: 24%;
+  right: 3%;
+  animation: floatCode1 10s ease-in-out infinite 2s;
+}
+
+.code-chip-5 {
+  bottom: 18%;
+  left: 3%;
+  animation: floatCode2 9s ease-in-out infinite 1.5s;
+}
+
+.code-chip-6 {
+  top: 22%;
+  left: 45%;
+  animation: floatCode3 11s ease-in-out infinite 3s;
+  opacity: 0.42;
+}
+
+.code-chip-7 {
+  bottom: 12%;
+  left: 36%;
+  animation: floatCode1 9s ease-in-out infinite 2.5s;
+  opacity: 0.42;
+}
+
+@keyframes floatCode1 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatCode2 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(-1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatCode3 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Responsiveness for floating code layer */
+@media (max-width: 1200px) {
+  .code-chip-6, .code-chip-7 {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .code-chip-3, .code-chip-4, .code-chip-5, .code-chip-6, .code-chip-7 {
+    display: none;
+  }
+  .code-chip-1 {
+    top: 5%;
+    left: 2%;
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    opacity: 0.45;
+  }
+  .code-chip-2 {
+    top: 5%;
+    right: 2%;
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 576px) {
+  .cyber-floating-code-layer {
+    display: none;
   }
 }
