@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>শেষ প্রহর - মোঃ বিজয় ইসলাম | Ultra-HD 3D Flipbook</title>
+  <meta name="description" content="শেষ প্রহর - লেখক মোঃ বিজয় ইসলাম (বিজয়)। জীবন, উপলব্ধি ও বিদায়ের বাস্তবমুখী অনুভূতির বই।">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-reader: #0b0f19;
+      --card-bg: rgba(20, 27, 43, 0.92);
+      --border-color: rgba(255, 255, 255, 0.12);
+      --accent: #ff4a57;
+      --accent-hover: #ff2a3b;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --book-shadow: 0 25px 65px rgba(0, 0, 0, 0.8), 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="sepia"] {
+      --bg-reader: #251e18;
+      --card-bg: rgba(42, 34, 27, 0.95);
+      --border-color: rgba(230, 210, 180, 0.18);
+      --accent: #d97706;
+      --text-main: #fef3c7;
+      --text-muted: #d5c4a1;
+    }
+
+    [data-theme="midnight"] {
+      --bg-reader: #05050a;
+      --card-bg: rgba(13, 14, 24, 0.95);
+      --border-color: rgba(99, 102, 241, 0.25);
+      --accent: #6366f1;
+      --text-main: #e0e7ff;
+      --text-muted: #818cf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background-color: var(--bg-reader);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    /* Top Navigation Toolbar */
+    .reader-header {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      z-index: 100;
+      position: sticky;
+      top: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s;
+    }
+
+    .btn-back:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateX(-2px);
+    }
+
+    .book-meta-head h1 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .book-meta-head span {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .header-center {
+      flex: 1;
+      max-width: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toc-select {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: 'Hind Siliguri', sans-serif;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .toc-select:focus {
+      border-color: var(--accent);
+    }
+
+    .toc-select option {
+      background: #111827;
+      color: #fff;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .tool-btn:hover, .tool-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-pdf-download {
+      background: rgba(255, 74, 87, 0.15);
+      border-color: rgba(255, 74, 87, 0.35);
+      color: #ff6b78;
+    }
+
+    .btn-pdf-download:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Main Flipbook Stage */
+    .reader-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 10px;
+      position: relative;
+      overflow: hidden;
+      perspective: 2500px;
+    }
+
+    .flipbook-zoom-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+      transform-origin: center center;
+    }
+
+    .flipbook-wrapper {
+      position: relative;
+      filter: drop-shadow(var(--book-shadow));
+    }
+
+    #flipbook {
+      margin: 0 auto;
+      visibility: hidden;
+    }
+
+    #flipbook.ready {
+      visibility: visible;
+    }
+
+    /* Page container & crisp image rendering */
+    .page {
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+
+    .page-content {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: fill;
+      /* Ultra-crisp rendering */
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Side Nav Buttons */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 20, 32, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 50;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-arrow:hover {
+      background: var(--accent);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-arrow.prev-arrow { left: 15px; }
+    .nav-arrow.next-arrow { right: 15px; }
+
+    /* Bottom Control Bar */
+    .reader-footer {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border-color);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      z-index: 100;
+    }
+
+    .page-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-step {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-step:hover:not(:disabled) {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-step:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .page-indicator {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .slider-wrap {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-slider {
+      flex: 1;
+      accent-color: var(--accent);
+      height: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .zoom-level-text {
+      font-size: 12px;
+      font-family: monospace;
+      color: var(--accent);
+      min-width: 45px;
+    }
+
+    /* Loading Overlay */
+    .book-loader {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-reader);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      z-index: 200;
+      transition: opacity 0.4s;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      .reader-header {
+        padding: 8px 12px;
+        flex-wrap: wrap;
+      }
+      .book-meta-head span { display: none; }
+      .header-center {
+        order: 3;
+        max-width: 100%;
+        width: 100%;
+        margin-top: 6px;
+      }
+      .nav-arrow { display: none; }
+      .slider-wrap { display: none; }
+      .reader-footer {
+        padding: 8px 12px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Loader -->
+  <div class="book-loader" id="loader">
+    <div class="spinner"></div>
+    <p style="font-size: 15px; font-weight: 500;">বইটির পাতা প্রস্তুত হচ্ছে... শেষ প্রহর</p>
+  </div>
+
+  <!-- Header -->
+  <header class="reader-header">
+    <div class="header-left">
+      <a href="index.html#book" class="btn-back">
+        <i class="bi bi-arrow-left"></i> <span>পোর্টফোলিও</span>
+      </a>
+      <div class="book-meta-head">
+        <h1>শেষ প্রহর</h1>
+        <span>মোঃ বিজয় ইসলাম</span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <select class="toc-select" id="tocSelect" title="সূচিপত্র">
+        <option value="0">📖 প্রচ্ছদ (Cover)</option>
+        <option value="2">✍️ লেখকের কিছু কথা (পৃষ্ঠা ১)</option>
+        <option value="3">🏛️ প্রকাশনী ও প্রাপ্তিস্থান (পৃষ্ঠা ২)</option>
+        <option value="5">পাঠ ০১: এটাই কি বিদায় ! আর কি ফিরব না? (পৃষ্ঠা ৪)</option>
+        <option value="18">পাঠ ০২: আমরা কি আসলেই স্বাধীন! (পৃষ্ঠা ১৭)</option>
+        <option value="27">পাঠ ০৩: নারী-পুরুষের মধ্যে কে বেশি স্বাধীন? (পৃষ্ঠা ২৬)</option>
+        <option value="47">পাঠ ০৪: আমরা মানুষ নাকি ব্যবসায়ী! (পৃষ্ঠা ৪৬)</option>
+        <option value="54">পাঠ ০৫: আমাদের সমাজচিত্র! (পৃষ্ঠা ৫৩)</option>
+        <option value="65">পাঠ ০৬: হয়তো তুমি তোমারই মত (পৃষ্ঠা ৬৪)</option>
+        <option value="82">পাঠ ০৭: সুখ কী? (পৃষ্ঠা ৮১)</option>
+        <option value="88">📕 শেষ প্রচ্ছদ (Back Cover)</option>
+      </select>
+    </div>
+
+    <div class="header-right">
+      <button class="tool-btn" id="zoomOut" title="জুম আউট (-)">
+        <i class="bi bi-zoom-out"></i>
+      </button>
+      <span class="zoom-level-text" id="zoomLevel">100%</span>
+      <button class="tool-btn" id="zoomIn" title="জুম ইন (+)">
+        <i class="bi bi-zoom-in"></i>
+      </button>
+
+      <a href="assets/book/shesh-prohor.pdf" target="_blank" download="Shesh-Prohor-By-Md-Bijoy-Islam.pdf" class="tool-btn btn-pdf-download" title="অরিজিনাল ভেক্টর PDF ডাউনলোড">
+        <i class="bi bi-file-earmark-pdf-fill"></i>
+      </a>
+
+      <button class="tool-btn" id="soundToggle" title="শব্দ অন/অফ (Sound Effect)">
+        <i class="bi bi-volume-up-fill" id="soundIcon"></i>
+      </button>
+      <button class="tool-btn" id="themeToggle" title="থিম পরিবর্তন">
+        <i class="bi bi-circle-half"></i>
+      </button>
+      <button class="tool-btn" id="fullscreenToggle" title="ফুলস্ক্রিন">
+        <i class="bi bi-arrows-fullscreen"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Reader Stage -->
+  <main class="reader-stage">
+    <button class="nav-arrow prev-arrow" id="prevArrow" title="পূর্ববর্তী পাতা">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <div class="flipbook-zoom-container" id="zoomContainer">
+      <div class="flipbook-wrapper">
+        <div id="flipbook">
+        <div class="page" data-density="hard">
+          <div class="page-content">
+            <img src="assets/img/book/page_000.webp" class="page-img" alt="Cover" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_001.webp" class="page-img" alt="Page 1" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_002.webp" class="page-img" alt="Page 2" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_003.webp" class="page-img" alt="Page 3" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_004.webp" class="page-img" alt="Page 4" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_005.webp" class="page-img" alt="Page 5" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_006.webp" class="page-img" alt="Page 6" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_007.webp" class="page-img" alt="Page 7" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_008.webp" class="page-img" alt="Page 8" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_009.webp" class="page-img" alt="Page 9" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_010.webp" class="page-img" alt="Page 10" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_011.webp" class="page-img" alt="Page 11" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_012.webp" class="page-img" alt="Page 12" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_013.webp" class="page-img" alt="Page 13" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_014.webp" class="page-img" alt="Page 14" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_015.webp" class="page-img" alt="Page 15" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_016.webp" class="page-img" alt="Page 16" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_017.webp" class="page-img" alt="Page 17" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_018.webp" class="page-img" alt="Page 18" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_019.webp" class="page-img" alt="Page 19" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_020.webp" class="page-img" alt="Page 20" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_021.webp" class="page-img" alt="Page 21" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_022.webp" class="page-img" alt="Page 22" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_023.webp" class="page-img" alt="Page 23" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_024.webp" class="page-img" alt="Page 24" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_025.webp" class="page-img" alt="Page 25" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_026.webp" class="page-img" alt="Page 26" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_027.webp" class="page-img" alt="Page 27" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_028.webp" class="page-img" alt="Page 28" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_029.webp" class="page-img" alt="Page 29" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_030.webp" class="page-img" alt="Page 30" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_031.webp" class="page-img" alt="Page 31" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_032.webp" class="page-img" alt="Page 32" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_033.webp" class="page-img" alt="Page 33" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_034.webp" class="page-img" alt="Page 34" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_035.webp" class="page-img" alt="Page 35" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_036.webp" class="page-img" alt="Page 36" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_037.webp" class="page-img" alt="Page 37" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_038.webp" class="page-img" alt="Page 38" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_039.webp" class="page-img" alt="Page 39" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_040.webp" class="page-img" alt="Page 40" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_041.webp" class="page-img" alt="Page 41" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_042.webp" class="page-img" alt="Page 42" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_043.webp" class="page-img" alt="Page 43" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_044.webp" class="page-img" alt="Page 44" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_045.webp" class="page-img" alt="Page 45" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_046.webp" class="page-img" alt="Page 46" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_047.webp" class="page-img" alt="Page 47" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_048.webp" class="page-img" alt="Page 48" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_049.webp" class="page-img" alt="Page 49" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_050.webp" class="page-img" alt="Page 50" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_051.webp" class="page-img" alt="Page 51" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_052.webp" class="page-img" alt="Page 52" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_053.webp" class="page-img" alt="Page 53" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_054.webp" class="page-img" alt="Page 54" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_055.webp" class="page-img" alt="Page 55" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_056.webp" class="page-img" alt="Page 56" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_057.webp" class="page-img" alt="Page 57" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_058.webp" class="page-img" alt="Page 58" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_059.webp" class="page-img" alt="Page 59" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_060.webp" class="page-img" alt="Page 60" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_061.webp" class="page-img" alt="Page 61" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_062.webp" class="page-img" alt="Page 62" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_063.webp" class="page-img" alt="Page 63" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_064.webp" class="page-img" alt="Page 64" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_065.webp" class="page-img" alt="Page 65" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_066.webp" class="page-img" alt="Page 66" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_067.webp" class="page-img" alt="Page 67" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_068.webp" class="page-img" alt="Page 68" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_069.webp" class="page-img" alt="Page 69" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_070.webp" class="page-img" alt="Page 70" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_071.webp" class="page-img" alt="Page 71" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_072.webp" class="page-img" alt="Page 72" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_073.webp" class="page-img" alt="Page 73" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_074.webp" class="page-img" alt="Page 74" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_075.webp" class="page-img" alt="Page 75" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_076.webp" class="page-img" alt="Page 76" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_077.webp" class="page-img" alt="Page 77" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_078.webp" class="page-img" alt="Page 78" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_079.webp" class="page-img" alt="Page 79" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_080.webp" class="page-img" alt="Page 80" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_081.webp" class="page-img" alt="Page 81" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_082.webp" class="page-img" alt="Page 82" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_083.webp" class="page-img" alt="Page 83" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_084.webp" class="page-img" alt="Page 84" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_085.webp" class="page-img" alt="Page 85" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_086.webp" class="page-img" alt="Page 86" loading="lazy">
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <img src="assets/img/book/page_087.webp" class="page-img" alt="Page 87" loading="lazy">
+          </div>
+        </div>
+        <div class="page" data-density="hard">
+          <div class="page-content">
+            <img src="assets/img/book/page_088.webp" class="page-img" alt="Back Cover" loading="lazy">
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-arrow next-arrow" id="nextArrow" title="পরবর্তী পাতা">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </main>
+
+  <!-- Footer Controls -->
+  <footer class="reader-footer">
+    <div class="page-controls">
+      <button class="btn-step" id="prevBtn">
+        <i class="bi bi-arrow-left"></i> পূর্ববর্তী
+      </button>
+      <div class="page-indicator" id="pageIndicator">পাতা ১ / ৮৯</div>
+      <button class="btn-step" id="nextBtn">
+        পরবর্তী <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="slider-wrap">
+      <input type="range" class="page-slider" id="pageSlider" min="0" max="88" value="0">
+      <span class="hint-text" style="font-size: 12px; color: var(--text-muted);">💡 কীবোর্ডের ← ও → চেপে পাতা উল্টান</span>
+    </div>
+  </footer>
+
+  <!-- Page Flip Library -->
+  <script src="assets/vendor/page-flip/page-flip.browser.js"></script>
+
+  <script>
+    const TOTAL_PAGES = 89;
+    let soundEnabled = true;
+    let audioCtx = null;
+    let currentZoom = 1.0;
+
+    // Realistic paper rustle sound generator via Web Audio API
+    function playPaperSound() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const bufferSize = audioCtx.sampleRate * 0.15;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1200, audioCtx.currentTime);
+        filter.Q.setValueAtTime(2.5, audioCtx.currentTime);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.25, audioCtx.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start();
+      } catch (e) {
+        console.warn("Audio not initialized:", e);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const flipbookEl = document.getElementById("flipbook");
+      const zoomContainer = document.getElementById("zoomContainer");
+      const pageIndicator = document.getElementById("pageIndicator");
+      const pageSlider = document.getElementById("pageSlider");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const prevArrow = document.getElementById("prevArrow");
+      const nextArrow = document.getElementById("nextArrow");
+      const tocSelect = document.getElementById("tocSelect");
+      const loader = document.getElementById("loader");
+      const zoomIn = document.getElementById("zoomIn");
+      const zoomOut = document.getElementById("zoomOut");
+      const zoomLevel = document.getElementById("zoomLevel");
+
+      // High-resolution base dimension settings for Ultra-HD rendering
+      const isMobile = window.innerWidth <= 768;
+      const baseWidth = isMobile ? Math.min(window.innerWidth - 24, 440) : 560;
+      const baseHeight = isMobile ? Math.floor(baseWidth * 1.418) : 794;
+
+      const pageFlip = new St.PageFlip(flipbookEl, {
+        width: baseWidth,
+        height: baseHeight,
+        size: "stretch",
+        minWidth: 280,
+        maxWidth: 1100,
+        minHeight: 400,
+        maxHeight: 1560,
+        maxShadowOpacity: 0.5,
+        showCover: true,
+        mobileScrollSupport: false,
+        useMouseEvents: true,
+        swipeDistance: 25,
+        drawShadow: true
+      });
+
+      // Load from real HTML DOM elements for native GPU rendering & zero blur
+      pageFlip.loadFromHTML(document.querySelectorAll(".page"));
+
+      pageFlip.on("init", () => {
+        flipbookEl.classList.add("ready");
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          setTimeout(() => loader.style.display = "none", 400);
+        }, 200);
+      });
+
+      pageFlip.on("flip", (e) => {
+        playPaperSound();
+        const current = e.data;
+        updateUI(current);
+      });
+
+      function updateUI(pageNum) {
+        pageSlider.value = pageNum;
+        if (pageNum === 0) {
+          pageIndicator.innerText = `প্রচ্ছদ`;
+        } else if (pageNum >= TOTAL_PAGES - 1) {
+          pageIndicator.innerText = `শেষ প্রচ্ছদ`;
+        } else {
+          pageIndicator.innerText = `পৃষ্ঠা ${pageNum} / ${TOTAL_PAGES - 1}`;
+        }
+
+        prevBtn.disabled = pageNum <= 0;
+        nextBtn.disabled = pageNum >= TOTAL_PAGES - 1;
+
+        // Auto select nearest TOC option
+        const options = Array.from(tocSelect.options);
+        for (let i = options.length - 1; i >= 0; i--) {
+          if (pageNum >= parseInt(options[i].value, 10)) {
+            tocSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      // Zoom Controls
+      function applyZoom(delta) {
+        currentZoom = Math.min(Math.max(currentZoom + delta, 0.8), 1.8);
+        zoomContainer.style.transform = `scale(${currentZoom})`;
+        zoomLevel.innerText = `${Math.round(currentZoom * 100)}%`;
+      }
+
+      zoomIn.addEventListener("click", () => applyZoom(0.15));
+      zoomOut.addEventListener("click", () => applyZoom(-0.15));
+      zoomLevel.addEventListener("click", () => {
+        currentZoom = 1.0;
+        zoomContainer.style.transform = `scale(1.0)`;
+        zoomLevel.innerText = `100%`;
+      });
+
+      // Prev / Next actions
+      prevBtn.addEventListener("click", () => pageFlip.flipPrev());
+      nextBtn.addEventListener("click", () => pageFlip.flipNext());
+      prevArrow.addEventListener("click", () => pageFlip.flipPrev());
+      nextArrow.addEventListener("click", () => pageFlip.flipNext());
+
+      // Slider jump
+      pageSlider.addEventListener("input", (e) => {
+        const target = parseInt(e.target.value, 10);
+        pageFlip.flip(target);
+      });
+
+      // Table of Contents jump
+      tocSelect.addEventListener("change", (e) => {
+        const target = parseInt(e.target.value, 10);
+        pageFlip.flip(target);
+      });
+
+      // Keyboard navigation
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") pageFlip.flipPrev();
+        if (e.key === "ArrowRight") pageFlip.flipNext();
+      });
+
+      // Sound Toggle
+      const soundToggle = document.getElementById("soundToggle");
+      const soundIcon = document.getElementById("soundIcon");
+      soundToggle.addEventListener("click", () => {
+        soundEnabled = !soundEnabled;
+        if (soundEnabled) {
+          soundIcon.className = "bi bi-volume-up-fill";
+          playPaperSound();
+        } else {
+          soundIcon.className = "bi bi-volume-mute-fill";
+        }
+      });
+
+      // Theme toggle (dark -> sepia -> midnight -> dark)
+      const themes = ["dark", "sepia", "midnight"];
+      let themeIdx = 0;
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        themeIdx = (themeIdx + 1) % themes.length;
+        document.body.setAttribute("data-theme", themes[themeIdx]);
+      });
+
+      // Fullscreen Toggle
+      document.getElementById("fullscreenToggle").addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
